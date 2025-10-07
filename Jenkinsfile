@@ -5,12 +5,15 @@ pipeline {
         DOCKERHUB_USERNAME = "kunchalavikram"
     }
 
-    stages {
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/kunchalavikram1427/maven-employee-web-application.git'
-            }
-        }
+   stage('Checkout') {
+    steps {
+        echo 'Cloning repository from GitHub...'
+        git branch: 'main',
+            credentialsId: 'github-token',       
+            url: 'https://github.com/manim-ms/Maven-project.git'   
+    }
+}
+
         stage('build'){
             steps{
                 withEnv(['PATH+EXTRA=/opt/apache-maven-3.9.5/bin']) {
